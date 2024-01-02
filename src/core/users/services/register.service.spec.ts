@@ -1,22 +1,12 @@
 import { UserRepository } from "@/external/repositories/users/user.repository";
-import { prisma } from "@/lib/prisma";
 import { password } from "bun";
-import { afterEach, beforeEach, describe, expect, it } from "bun:test";
-import { RegisterUserService } from "./register-user.service";
+import { describe, expect, it } from "bun:test";
+import { RegisterUserService } from "./register.service";
 
 const userRepository = new UserRepository();
 const sut = new RegisterUserService(userRepository);
 
 describe("RegisterUserService", () => {
-  beforeEach(async () => {
-    await prisma.$connect();
-  });
-
-  afterEach(async () => {
-    await prisma.user.deleteMany();
-    await prisma.$disconnect();
-  });
-
   it("should be able to register a new user", async () => {
     const newUser = {
       name: "John Doe",

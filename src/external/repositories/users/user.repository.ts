@@ -25,13 +25,32 @@ export class UserRepository implements UserRepositoryInterface {
     return userCreated;
   }
   async update(item: UserRequestDTO): Promise<User> {
-    throw new Error("Method not implemented.");
+    const userUpdated = await prisma.user.update({
+      where: {
+        id: item.id,
+      },
+      data: {
+        name: item.name,
+        email: item.email,
+        password: item.password,
+      },
+    });
+
+    return userUpdated;
   }
   async delete(id: string): Promise<null> {
     throw new Error("Method not implemented.");
   }
   async findById(id: string): Promise<User> {
-    throw new Error("Method not implemented.");
+    const user = await prisma.user.findUnique({
+      where: {
+        id,
+      },
+    });
+
+    if (!user) throw new Error("User not found");
+
+    return user;
   }
   async findAll(): Promise<User[]> {
     throw new Error("Method not implemented.");
