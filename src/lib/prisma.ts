@@ -4,4 +4,9 @@ import { spawnSync } from "bun";
 export const prisma = new PrismaClient();
 
 if (Bun.env.NODE_ENV === "test")
-  spawnSync({ cmd: ["bunx", "prisma", "migrate", "dev"] });
+  //adicionar um console e uma cor verde na mensagem
+  console.log(
+    "\x1b[32m%s\x1b[0m",
+    "Prisma connected to database: " + Bun.env.DATABASE_URL
+  );
+spawnSync({ cmd: ["bunx", "prisma", "migrate", "dev"] });
