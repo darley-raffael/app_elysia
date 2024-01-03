@@ -1,10 +1,11 @@
-###
-POST http://localhost:3333/users HTTP/1.1
+### Create an new user
+POST http://localhost:3333/users
 Content-Type: application/json
 
 {
-  "name": "John",
-  "email": "john@example.com",
-  "password": "123456"
+  "name": "Julia",
+  "email": "julia@example.com",
+  "password": "@123412"
 }
-###
+### Get user profile
+GET http://localhost:3333/users/profile/1aba335f-526f-47c5-b8ae-2dcd9f29ad2b HTTP/1.1
